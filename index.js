@@ -46,7 +46,7 @@ function createRock(x) {
   moveRock(rock)
 
   function moveRock(rock) {
-    function fall() {
+    function fall() { // callback function
       rock.style.top = `${top += 2}px` // move rock down 2px
       if (checkCollision(rock)) {
         endGame() // collides with rock
@@ -57,9 +57,9 @@ function createRock(x) {
       }
      }
 
-  window.requestAnimationFrame(fall) // animate rock
-  ROCKS.push(rock) // add rock to array so all rocks can be removed at once at endgame
-  return rock
+    window.requestAnimationFrame(fall) // animate rock
+    ROCKS.push(rock) // add rock to array so all rocks can be removed at once at endgame
+    return rock
   }
 }
 
