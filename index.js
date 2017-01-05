@@ -12,23 +12,22 @@ var gameInterval = null
 function checkCollision(rock) {
   const top = positionToInteger(rock.style.top)
 
-  if (top < 360) {
-    return false // rock not at collision height so false
-  } else { // rock is at collision height of the dodger
+  if (top > 360) { // rock is not at collision height of the dodger
     const dodgerLeftEdge = positionToInteger(DODGER.style.left)
     const dodgerRightEdge = positionToInteger(DODGER.style.left) + 40
     const rockLeftEdge = positionToInteger(rock.style.left)
     const rockRightEdge = positionToInteger(rock.style.left) + 20
 
-    if (rockLeftEdge < dodgerLeftEdge && rockRightEdge > dodgerLeftEdge) {
+    if (rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge) {
       return true // partial hit left
-    } else if (rockLeftEdge < dodgerRightEdge && rockRightEdge > dodgerRightEdge) {
+    } else if (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge) {
       return true // partial hit right
-    } else if (rockLeftEdge < dodgerRightEdge && rockRightEdge > dodgerLeftEdge) {
+    } else if (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerLeftEdge) {
       return true // full hit
-    } else {
-      return false // complete miss
     }
+    // else {
+    //   return false // complete miss
+    // }
   }
 }
 
